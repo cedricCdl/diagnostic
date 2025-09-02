@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.0'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.softway'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot Starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    
+    // Swagger/OpenAPI
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+    
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    
+    // BDD avec Cucumber
+    testImplementation 'io.cucumber:cucumber-java:7.15.0'
+    testImplementation 'io.cucumber:cucumber-spring:7.15.0'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.15.0'
+    testImplementation 'org.junit.platform:junit-platform-suite:1.11.2'
+    testImplementation 'io.cucumber:cucumber-spring:7.15.0'
+}
+
+test {
+    useJUnitPlatform()
+    
+    // Afficher les logs des tests
+    testLogging {
+        showStandardStreams = true
+        events "passed", "skipped", "failed"
+    }
+}
+
+// Tâche spécifique pour exécuter les tests BDD
+task cucumberTest(type: Test) {
+    useJUnitPlatform()
+    include '**/*CucumberTest.class'
+    group = 'verification'
+    description = 'Exécute les tests BDD avec Cucumber'
+}

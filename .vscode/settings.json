@@ -1,0 +1,39 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.test.config": {
+        "vmargs": [
+            "-Dcucumber.junit-platform.naming-strategy=long",
+            "-Dcucumber.filter.tags="
+        ]
+    },
+    "java.test.defaultConfig": "default",
+    "java.test.editor.enableShortcuts": true,
+    "java.test.config": {
+        "workingDirectory": "${workspaceFolder}/app"
+    },
+    "files.associations": {
+        "*.feature": "cucumber"
+    },
+    "cucumber.features": [
+        "app/src/test/resources/features/**/*.feature"
+    ],
+    "cucumber.glue": [
+        "com.softway.bdd.steps"
+    ],
+    "cucumber.snippets": {
+        "framework": "java"
+    },
+    "java.project.sourcePaths": [
+        "app/src/main/java",
+        "app/src/test/java"
+    ],
+    "java.project.resourcePaths": [
+        "app/src/main/resources",
+        "app/src/test/resources"
+    ],
+    "java.project.outputPath": "app/build/classes",
+    "java.project.referencedLibraries": [
+        "app/build/libs/**/*.jar"
+    ]
+}
