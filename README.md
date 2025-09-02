@@ -41,7 +41,7 @@ Ce projet implémente un système d'auto-diagnostic hospitalier moderne utilisan
 
 ## 🚀 Technologies
 
-- **Spring Boot 3.3.0** avec Java 17
+- **Spring Boot 3.3.5** avec Java 17
 - **Spring Web** pour l'API REST
 - **Swagger/OpenAPI** pour la documentation
 - **Gradle** pour la gestion des dépendances
@@ -164,69 +164,24 @@ Scenario: Détection de pathologies multiples
 
 ### Installation et Lancement
 
-```bash
+````bash
 # Cloner le projet
 git clone <repository-url>
-cd softway
+cd diagnostic
 
 # Construire le projet
-./gradlew build
+./gradlew clean build
+
+# Lancer les tests avec logs détaillés
+./gradlew test --rerun-tasks --info --console=verbose -Dlogging.level.com.softway.diagnostic=DEBUG
 
 # Lancer l'application
 ./gradlew bootRun
 
 # Ou avec le JAR
-java -jar app/build/libs/app-0.0.1-SNAPSHOT.jar
-```
+java -jar app/build/libs/app-0.0.1-SNAPSHOT.jar```
 
-### Commandes d'Exécution
 
-```bash
-# Compilation
-./gradlew compileJava
-
-# Tests unitaires
-./gradlew test
-
-# Tests BDD Cucumber
-./gradlew test
-
-# Build complet
-./gradlew build
-
-# Lancement de l'application
-./gradlew bootRun
-
-# Nettoyage
-./gradlew clean
-```
-
-## 🔧 Développement
-
-### Ajout de Nouvelles Pathologies
-
-1. **Créer un nouveau détecteur** :
-
-   ```java
-   @Component
-   public class NeurologyDetector implements PathologyDetector {
-       // Implémentation
-   }
-   ```
-
-2. **Ajouter la pathologie** dans `Pathology.java`
-
-3. **Ajouter les tests BDD** correspondants
-
-4. **Spring auto-détecte** le nouveau composant
-
-### Extensibilité
-
-Le système est conçu pour être extensible :
-
-- **Nouveaux détecteurs** : Ajout sans modification du code existant
-- **Nouvelles stratégies** : Implémentation de `DiagnosticStrategy`
-- **Nouvelles validations** : Extension de `InvalidHealthIndexException`
 
 ## 📊 Qualité et Tests
 
@@ -275,6 +230,28 @@ Le système simule une cabine d'auto-diagnostic qui :
 - **INFO** : Opérations normales
 - **WARN** : Situations d'attention
 - **ERROR** : Erreurs métier et techniques
+
+### Commandes de Test avec Logs
+
+```bash
+# Tests avec logs complets (recommandé)
+./gradlew test --rerun-tasks --info --console=verbose -Dlogging.level.com.softway.diagnostic=DEBUG
+
+# Tests avec logs de base
+./gradlew test --info --console=verbose
+
+# Tests BDD uniquement
+./gradlew cucumberTest --info --console=verbose
+````
+
+### Logs Visibles
+
+Avec la commande complète, vous verrez :
+
+- ✅ Démarrage Spring Boot avec logo
+- ✅ Logs avec emojis : `🔧 Initialisation de la cabine...`, `✅ Cabine opérationnelle !`
+- ✅ Logs d'erreur et warnings détaillés
+- ✅ Tous les détails des tests BDD
 
 ## 🎯 Points Forts pour l'Entretien
 
