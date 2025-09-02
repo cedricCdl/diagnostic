@@ -166,7 +166,7 @@ Scenario: Détection de pathologies multiples
 
 ````bash
 # Cloner le projet
-git clone <repository-url>
+git clone git@github.com:cedricCdl/diagnostic.git
 cd diagnostic
 
 # Construire le projet
@@ -177,11 +177,6 @@ cd diagnostic
 
 # Lancer l'application
 ./gradlew bootRun
-
-# Ou avec le JAR
-java -jar app/build/libs/app-0.0.1-SNAPSHOT.jar```
-
-
 
 ## 📊 Qualité et Tests
 
@@ -199,50 +194,6 @@ java -jar app/build/libs/app-0.0.1-SNAPSHOT.jar```
 - **Gestion d'erreurs** : Exceptions métier appropriées
 - **Documentation** : API documentée avec Swagger
 - **Tests** : BDD avec Cucumber
-
-## 🏥 Contexte Métier
-
-### Cabine d'Auto-Diagnostic
-
-Le système simule une cabine d'auto-diagnostic qui :
-
-1. **Capture** l'index de santé du patient
-2. **Analyse** les pathologies potentielles
-3. **Redirige** vers les unités médicales appropriées
-4. **Gère** les queues de patients
-
-### Unités Médicales
-
-- **Cardiologie** : Problèmes cardiaques
-- **Traumatologie** : Fractures et traumatismes
-
-## 📝 Logs et Monitoring
-
-### Configuration des Logs
-
-- **Console** : Logs de développement
-- **Fichiers** : `logs/hospital-diagnostic.log`
-- **Erreurs** : `logs/hospital-errors.log`
-- **Rotation** : Logs quotidiens avec rétention 30 jours
-
-### Niveaux de Log
-
-- **INFO** : Opérations normales
-- **WARN** : Situations d'attention
-- **ERROR** : Erreurs métier et techniques
-
-### Commandes de Test avec Logs
-
-```bash
-# Tests avec logs complets (recommandé)
-./gradlew test --rerun-tasks --info --console=verbose -Dlogging.level.com.softway.diagnostic=DEBUG
-
-# Tests avec logs de base
-./gradlew test --info --console=verbose
-
-# Tests BDD uniquement
-./gradlew cucumberTest --info --console=verbose
-````
 
 ### Logs Visibles
 
@@ -264,15 +215,7 @@ Avec la commande complète, vous verrez :
 
 ### Tests
 
-- **BDD** : Scénarios métier complets
+- **BDD** : Scénarios métier
 - **Couverture** : Cas de succès et d'échec
 - **Intégration** : Tests avec Spring Boot
 - **Documentation** : Tests auto-documentés
-
-## 📄 Licence
-
-MIT License - Voir le fichier LICENSE pour plus de détails.
-
----
-
-**Développé avec ❤️ en respectant les meilleures pratiques de développement Java/Spring**
